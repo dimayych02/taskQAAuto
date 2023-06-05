@@ -1,6 +1,5 @@
 package wildberries;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -58,7 +57,7 @@ public class SearchPage {
         UIHelper.scrollingPage();
 
         int indexName = 0;
-        for (WebElement element:listOfProductNames) {//Обходим stale element reference exception
+        for (int i = 0; i < listOfProductNames.size(); i++) {//Обходим stale element reference exception
             System.out.println(listOfProductNames.get(indexName).getText().replaceAll("/", ""));
             indexName++;
         }
