@@ -17,7 +17,6 @@ public class Solution {
             searchJsFiles(new File(rootPath), jsPaths, jsCounts);
         }
 
-
         List<Map.Entry<String, Integer>> entries = new ArrayList<>(jsCounts.entrySet());
 
         // Сортируем список в порядке убывания значений

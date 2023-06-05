@@ -21,7 +21,7 @@ public class SearchPage {
     @FindBy(xpath = "//button[contains(@class,'dropdown-filter__btn--sorter')]")
     private WebElement buttonFilter;
 
-    @FindBy(css= "button[class=swiper-button-next]")
+    @FindBy(css = "button[class=swiper-button-next]")
     private WebElement nextAdvertiseButton;
 
     @FindBy(xpath = "//span[text()='По возрастанию цены']")
@@ -57,7 +57,7 @@ public class SearchPage {
         UIHelper.scrollingPage();
 
         int indexName = 0;
-        for (int i = 0; i < listOfProductNames.size(); i++) {//Обходим stale element reference exception
+        for (WebElement element : listOfProductNames) {//Обходим stale element reference exception
             System.out.println(listOfProductNames.get(indexName).getText().replaceAll("/", ""));
             indexName++;
         }
