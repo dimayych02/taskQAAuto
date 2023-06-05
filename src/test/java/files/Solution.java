@@ -1,12 +1,11 @@
 package files;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Solution {
+
+    private static final int NUMBERS_DiVISIONS = 2;
 
     public static void main(String[] args) {
 
@@ -18,13 +17,53 @@ public class Solution {
             searchJsFiles(new File(rootPath), jsPaths, jsCounts);
         }
 
-        for (int i = 0; i < jsPaths.size(); i++) {
-            String jsPath = jsPaths.get(i);
-            int jsCount = jsCounts.get(jsPath);
-            System.out.println(jsPath + " (" + jsCount + ")");
+
+        List<Map.Entry<String, Integer>> entries = new ArrayList<>(jsCounts.entrySet());
+
+        // Сортируем список в порядке убывания значений
+        entries.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+
+        //  list для хранения данных
+        List<List<String>> arrays = new ArrayList<>();
+        for (int i = 0; i < NUMBERS_DiVISIONS; i++) {
+            arrays.add(new ArrayList<>());
+        }
+
+        // Добавляем ключи в массивы, начиная с наименьшего по значению
+        for (Map.Entry<String, Integer> entry : entries) {
+            List<String> smallestArray = arrays.get(0);
+            int smallestSum = getSum(smallestArray, jsCounts);
+            for (List<String> array : arrays) {
+                int sum = getSum(array, jsCounts);
+                if (sum < smallestSum) {
+                    smallestArray = array;
+                    smallestSum = sum;
+                }
+            }
+            smallestArray.add(entry.getKey());
+        }
+
+        // Выводим Результат
+        for (int i = 0; i < NUMBERS_DiVISIONS; i++) {
+            System.out.println("[" + (i + 1) + "]");
+            List<String> array = arrays.get(i);
+            for (String key : array) {
+                System.out.println(key + " (" + jsCounts.get(key) + ")");
+            }
         }
     }
 
+    //сумма HashMap-значений
+    private static int getSum(List<String> keys, Map<String, Integer> hashMap) {
+        int sum = 0;
+        for (String key : keys) {
+            sum += hashMap.get(key);
+        }
+        return sum;
+    }
+
+
+    //Ищем js-он файлы
     private static void searchJsFiles(File directory, List<String> jsPaths, Map<String, Integer> jsCounts) {
         File[] files = directory.listFiles();
         if (files == null) {
@@ -45,4 +84,5 @@ public class Solution {
             jsCounts.put(directory.getPath(), jsCount);
         }
     }
+
 }
