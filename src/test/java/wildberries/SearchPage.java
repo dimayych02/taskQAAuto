@@ -58,7 +58,7 @@ public class SearchPage {
         UIHelper.scrollingPage();
 
         int indexName = 0;
-        for (int i = 0; i < listOfProductNames.size(); i++) {//Обходим stale element reference exception
+        for (WebElement element:listOfProductNames) {//Обходим stale element reference exception
             System.out.println(listOfProductNames.get(indexName).getText().replaceAll("/", ""));
             indexName++;
         }
