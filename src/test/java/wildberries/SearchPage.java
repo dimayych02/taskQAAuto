@@ -40,7 +40,7 @@ public class SearchPage {
     }
 
     public SearchPage fillSearchField() {
-        //ждем пока по  кнопке  nextAdvertise можно кликнуть,чтобы можно было ввести текст 'траспнортир'
+        //ждем пока   кнопка  nextAdvertise будет видна,чтобы можно было ввести текст 'траспнортир'
         nextAdvertiseButton = UIHelper.waitForElementVisible(nextAdvertiseButton, 10);
         buttonSearch.sendKeys(GOOD_VALUE, Keys.ENTER);
         return this;
