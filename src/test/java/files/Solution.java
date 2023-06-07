@@ -9,7 +9,8 @@ public class Solution {
 
     public static void main(String[] args) {
 
-        String[] rootPaths = {"C:\\Users\\User\\IdeaProjects\\ReserveProject\\src\\test\\resources\\Каталоги\\A", "C:\\Users\\User\\IdeaProjects\\ReserveProject\\src\\test\\resources\\Каталоги\\B"};
+        String[] rootPaths = {"C:\\Users\\User\\IdeaProjects\\ReserveProject\\src\\test\\resources\\Каталоги\\A",
+                "C:\\Users\\User\\IdeaProjects\\ReserveProject\\src\\test\\resources\\Каталоги\\B"};
         List<String> jsPaths = new ArrayList<>();
         Map<String, Integer> jsCounts = new HashMap<>();
 
